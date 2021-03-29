@@ -26,6 +26,9 @@ document.querySelector('.check').addEventListener("click", function () {
     }
   } 
   else if (guess !== secretNumber){
+    if (guess < 1 || guess > 20 ){
+      displayMessage('Guess must be from 1-20!')
+    }
     if (score > 1) {
         displayMessage(guess > secretNumber ? 'Too high!' : 'Too low!')
         document.querySelector('.message').textContent = guess > secretNumber ? "Too high!" : "Too low!";
