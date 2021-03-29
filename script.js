@@ -11,7 +11,7 @@ const displayMessage = function(message) {
 document.querySelector('.check').addEventListener("click", function () {
   const guess = Number(document.querySelector(".guess").value);
 
-  if (!guess) {
+  if (!guess && guess !== 0) {
     displayMessage('No Number Provided!');
   } 
   else if (guess === secretNumber) {
@@ -26,17 +26,19 @@ document.querySelector('.check').addEventListener("click", function () {
     }
   } 
   else if (guess !== secretNumber){
-    if (guess < 1 || guess > 20 ){
+    if (!(guess >= 1 && guess <= 20)){
       displayMessage('Guess must be from 1-20!')
     }
-    if (score > 1) {
+    else if (score > 1) {
         displayMessage(guess > secretNumber ? 'Too high!' : 'Too low!')
         document.querySelector('.message').textContent = guess > secretNumber ? "Too high!" : "Too low!";
         score--;
         document.querySelector('.score').textContent = score;
-      } else {
-        score--;
+      } 
+    else {
+        score = 0;
         document.querySelector('.message').textContent = "You lost the game!";
+        document.querySelector('.score').textContent = score;
         document.querySelector('.number').textContent = secretNumber;
       }
   }
